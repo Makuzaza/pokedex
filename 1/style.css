@@ -17,7 +17,7 @@ h1 {
     margin: 80px;
 }
 
-.container {
+.pokedex {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -47,15 +47,27 @@ h1 {
     position: absolute;
     top: 0px;
     right: 0px;
-    background-color: rgb(25, 87, 162);
+    background-color: rgb(28, 49, 73);
     padding: 10px;
     border-radius: 0 0 0 20px;
     color: aliceblue;
 }
 
-.img_pokemon:hover {
+.box:hover .img_pokemon {
     -webkit-filter: grayscale(0%);
     filter: grayscale(0%);
+}
+
+.box:hover h2 {
+    background-color: rgb(238, 168, 228);
+}
+
+.box:hover .types {
+    background-color: rgb(65, 115, 240);
+}
+
+.box:hover .number {
+    background-color: rgb(65, 115, 240);
 }
 
 input {
@@ -67,12 +79,20 @@ input {
     border-style: groove;
     border-width: 1px;
     border-color: black;
-  }
+}
 
 h2 {
     background-color: rgb(236, 236, 131);
 }
 
-  h2:hover {
-    background-color: cadetblue;
-  }
+
+.types {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 5px 10px 5px 10px;
+    background-color: rgb(28, 49, 73);
+    color: aliceblue;
+    font-size: 13px;
+}
+
