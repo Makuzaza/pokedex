@@ -6,16 +6,73 @@
 }
   
 body {
- background-image: none;
-  }
+    background-image: url('https://images.unsplash.com/photo-1511142878591-5040f0bdaadd?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=MnwxfDB8MXxyYW5kb218MHx8Zm9yZXN0fHx8fHx8MTY5NjI2NTI4NA&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1600');
+    background-repeat: no-repeat;
+    font-family: 'Comfortaa', sans-serif;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    margin: 80px;
+}
 
 .container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    gap: 30px;
+
 }
 
-
-img {
-    width: 10rem;
+.img_pokemon {
+    width: 100%;
+    object-fit: cover;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    padding: 10px 10px 0px 10px;
 }
+
+.box {
+    width: 11rem;
+    background-color: aliceblue;
+    text-align: center;
+    position: relative;
+    text-align: center;
+}
+
+.number {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: rgb(25, 87, 162);
+    padding: 10px;
+    border-radius: 0 0 0 20px;
+    color: aliceblue;
+}
+
+.img_pokemon:hover {
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
+}
+
+input {
+    margin-bottom: 50px;
+    float: center;
+    padding: 6px;
+    border: none;
+    font-size: 17px;
+    border-style: groove;
+    border-width: 1px;
+    border-color: black;
+  }
+
+h2 {
+    background-color: rgb(236, 236, 131);
+}
+
+  h2:hover {
+    background-color: cadetblue;
+  }
