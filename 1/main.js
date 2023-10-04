@@ -19,16 +19,16 @@ await
         });
         Promise.all(fetches).then((res) => {
             pokeData = res;
-            pokeCards();
+            pokeCards(pokeData);
             // pokeData = data.results;
             console.log(pokeData)
         });
     });
 };
 
-const pokeCards = () => {
-
-  const cards = pokeData.map((pokemon) => {
+const pokeCards = (filteredData) => {
+const cards = filteredData.map((pokemon) => {
+//   const cards = pokeData.map((pokemon) => {
     // console.log(pokemon.types);
       return `
       <div class="box">
@@ -39,7 +39,7 @@ const pokeCards = () => {
       ${pokemon.types.map((type) => getTypeString(type)).join('')}
       </div>
       </div>`;
-  }).join('')
+  }).join('');
   
   content.innerHTML = cards;
 };
@@ -49,3 +49,10 @@ const getTypeString = (type) => {
 }
 
 fetchData();
+
+const searchInput = document.getElementById('search');
+searchInput.addEventListener('input', () => {
+    const searchTerm = searchInput.value.toLowerCase();
+    const filteredData = pokeData.filter(pokemon => pokemon.name.toLowerCase().includes(searchTerm));
+    pokeCards(filteredData);
+});
