@@ -50,9 +50,15 @@ const getTypeString = (type) => {
 
 fetchData();
 
-const searchInput = document.getElementById('search');
-searchInput.addEventListener('input', () => {
+const searching = () => {
     const searchTerm = searchInput.value.toLowerCase();
-    const filteredData = pokeData.filter(pokemon => pokemon.name.toLowerCase().includes(searchTerm));
+    const filteredData = pokeData.filter(pokemon => {
+        const choosingName = pokemon.name.toLowerCase().includes(searchTerm);
+        const choosingType = pokemon.types.some(type => type.type.name.toLowerCase().includes(searchTerm));
+        return choosingName || choosingType;
+    });
     pokeCards(filteredData);
-});
+}
+
+const searchInput = document.getElementById('search');
+searchInput.addEventListener('input', searching);
