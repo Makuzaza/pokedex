@@ -3,7 +3,7 @@ let pokeData = [];
 
 const fetchData = async () => {
 await
-  fetch("https://pokeapi.co/api/v2/pokemon?limit=121&offset=0")
+  fetch("https://pokeapi.co/api/v2/pokemon?limit=300&offset=0")
     .then((response) => response.json())
     .then((data) => { 
         const fetches = data.results.map((item) => {
@@ -14,6 +14,8 @@ await
                     name: data.name,
                     img: data.sprites.other['official-artwork'].front_default,
                     types: data.types,
+                    height: data.height*10,
+                    weight: data.weight/10
                 };
             });
         });
@@ -21,7 +23,7 @@ await
             pokeData = res;
             pokeCards(pokeData);
             // pokeData = data.results;
-            console.log(pokeData)
+            // console.log(pokeData)
         });
     });
 };
@@ -32,13 +34,16 @@ const cards = filteredData.map((pokemon) => {
     // console.log(pokemon.types);
       return `
       <div class="box">
-      <img class="img_pokemon" src="${pokemon.img}" />
-      <div class="number">${pokemon.id}</div>
-      <h2>${pokemon.name}</h2>
-      <div class="types">
-      ${pokemon.types.map((type) => getTypeString(type)).join('')}
-      </div>
-      </div>`;
+            <img class="img_pokemon" src="${pokemon.img}" />
+            <div class="number">${pokemon.id}</div>
+            <h2>${pokemon.name}</h2>
+            <div class="types">
+                ${pokemon.types.map((type) => getTypeString(type)).join('')}
+            </div>
+            <div class="types">
+            <div>${pokemon.height} cm</div><div> ${pokemon.weight} kg</div>
+            </div>
+        </div>`;
   }).join('');
   
   content.innerHTML = cards;
@@ -47,8 +52,6 @@ const cards = filteredData.map((pokemon) => {
 const getTypeString = (type) => {
     return `<p>${type.type.name}</p>`;
 }
-
-fetchData();
 
 const searching = () => {
     const searchTerm = searchInput.value.toLowerCase();
@@ -62,3 +65,5 @@ const searching = () => {
 
 const searchInput = document.getElementById('search');
 searchInput.addEventListener('input', searching);
+
+fetchData();
