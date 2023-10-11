@@ -1,8 +1,8 @@
+const generationButtons = document.querySelectorAll('button');
 const content = document.querySelector(".pokedex");
 let pokeData = [];
 
-const fetchData = async () => {
-await
+const fetchData = () => {
   fetch("https://pokeapi.co/api/v2/pokemon?limit=300&offset=0")
     .then((response) => response.json())
     .then((data) => { 
@@ -14,8 +14,8 @@ await
                     name: data.name,
                     img: data.sprites.other['official-artwork'].front_default,
                     types: data.types,
-                    height: data.height*10,
-                    weight: data.weight/10
+                    height: data.height * 10,
+                    weight: data.weight / 10
                 };
             });
         });
@@ -65,5 +65,69 @@ const searching = () => {
 
 const searchInput = document.getElementById('search');
 searchInput.addEventListener('input', searching);
+
+generationButtons.forEach(button => {
+    button.addEventListener('click', () => pushButtons(button));
+});
+
+const pushButtons = async (button) => {
+    const selectedGeneration = button.textContent;
+    const generationNumber = selectedGeneration.replace('Gen', '').trim(); 
+    const generationAnswer = await fetch(`https://pokeapi.co/api/v2/generation/${generationNumber}/`);
+    const generationData = await generationAnswer.json();
+    const pokemonNumber = generationData.pokemon_species.length;
+    const generationCount = document.getElementById('generation_count');
+    generationCount.textContent = `Number of Pokemons in ${selectedGeneration}: ${pokemonNumber}`;
+    const pokemonList = generationData.pokemon_species;
+    const fetches = pokemonList.map((species) => {
+        return fetch(species.url)
+        .then(res => res.json())
+        .then(data => {
+            return {
+                id: data.id,
+                name: data.name,
+                img: data.sprites.other['official-artwork'].front_default,
+                types: data.types,
+                height: data.height * 10,
+                weight: data.weight / 10
+            };
+        });
+    });
+    // const pokeData = await Promise.all(fetches);
+    // pokeCards(pokeData);
+    // console.log(pokeData)
+    Promise.all(fetches).then((res) => {
+        pokeData = res;
+        pokeCards(pokeData);
+        console.log(res); 
+    });
+}
+
+// const pushButtons = async (button) => {
+//     const selectedGeneration = button.textContent;
+//     const generationAnswer = await fetch(`https://pokeapi.co/api/v2/generation/`);
+//     const generationData = await generationAnswer.json();
+//     const pokemonNumber = generationData.pokemon_species.length;
+//     const generationNumber = document.getElementById('generation_count');
+//     generationNumber.textContent = `Number of Pokémon in ${selectedGeneration}: ${pokemonNumber}`;
+//     const pokemonList = generationData.pokemon_species;
+//     const fetches = pokemonList.map((species) => {
+//         return fetch(species.url)
+//         .then(res => res.json())
+//         .then(data => {
+//             return {
+//                 id: data.id,
+//                 name: data.name,
+//                 img: data.sprites.other['official-artwork'].front_default,
+//                 types: data.types,
+//                 height: data.height * 10,
+//                 weight: data.weight / 10
+//             };
+//         });
+//     });
+//     const pokeData = await Promise.all(fetches);
+//     pokeCards(pokeData);
+//     console.log(pokeData)
+// }
 
 fetchData();

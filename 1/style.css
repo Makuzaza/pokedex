@@ -116,3 +116,14 @@ h2 {
     font-size: 13px;
 }
 
+#generation_buttons {
+    margin-bottom: 30px;
+
+}
+
+#generation_count {
+    color: white;
+    margin-bottom: 30px;
+
+}
+
