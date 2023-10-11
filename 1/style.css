@@ -12,10 +12,26 @@ body {
     text-align: center;
 }
 
-h1 {
+.line {
     text-align: center;
-    margin: 80px;
+    margin: 30px;
+    font-size: 30px;
+    text-shadow: 2px 2px 10px beige;
 }
+
+.line h1::after {
+    content: "";
+    height: 4px;
+    width: 0;
+    display: inherit;
+    background: beige;
+    transition: 1s ease-in all;
+}
+
+.line:hover h1::after {
+    width: 100%;
+}
+
 
 .pokedex {
     display: flex;
@@ -23,8 +39,8 @@ h1 {
     justify-content: center;
     justify-items: center;
     align-items: center;
-    gap: 30px;
-
+    gap: 15px;
+    margin-bottom: 30px;
 }
 
 .img_pokemon {
@@ -54,7 +70,7 @@ h1 {
 }
 
 .box:hover{
-    transform: rotate(1deg);
+    transform: rotate(-1deg);
 }
 
 .box:hover .img_pokemon {
@@ -91,6 +107,7 @@ h1 {
 }
 
 input {
+    width: 250px;
     margin-bottom: 50px;
     float: center;
     padding: 6px;
@@ -99,6 +116,7 @@ input {
     border-style: groove;
     border-width: 1px;
     border-color: black;
+    border-radius: 5px;
 }
 
 h2 {
@@ -118,12 +136,33 @@ h2 {
 
 #generation_buttons {
     margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
 
+button {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
 }
 
 #generation_count {
-    color: white;
+    text-shadow: 2px 2px 10px black;
+    color: beige;
     margin-bottom: 30px;
-
+    font-size: 20px;
 }
+
 
