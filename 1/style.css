@@ -4,6 +4,12 @@
     box-sizing: border-box;
 
 }
+
+main {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
   
 body {
     background-image: url('https://images.unsplash.com/photo-1511142878591-5040f0bdaadd?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=MnwxfDB8MXxyYW5kb218MHx8Zm9yZXN0fHx8fHx8MTY5NjI2NTI4NA&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1600');
@@ -13,9 +19,8 @@ body {
 }
 
 .line {
-    text-align: center;
-    margin: 30px;
-    font-size: 30px;
+    margin: 40px;
+    font-size: 35px;
     text-shadow: 2px 2px 10px beige;
 }
 
@@ -24,8 +29,8 @@ body {
     height: 4px;
     width: 0;
     display: inherit;
-    background: beige;
-    transition: 1s ease-in all;
+    background: rgb(120, 232, 207);
+    transition: 0.8s ease-in all;
 }
 
 .line:hover h1::after {
@@ -159,10 +164,10 @@ button:hover {
 }
 
 #generation_count {
-    text-shadow: 2px 2px 10px black;
+    text-shadow: 1px 1px 5px black;
     color: beige;
     margin-bottom: 30px;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 
